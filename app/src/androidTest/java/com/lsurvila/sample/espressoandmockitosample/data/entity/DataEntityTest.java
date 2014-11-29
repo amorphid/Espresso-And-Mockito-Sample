@@ -6,7 +6,9 @@ public class DataEntityTest extends TestCase {
 
     public void testMakeFoodDescriptionFromAsciiString() {
         String data = "~01169~^~0100~^~Cheese, low-sodium, cheddar or colby~^~CHEESE,LOW-SODIUM,CHEDDAR OR COLBY~^~Cheese~^~Cheese (Manufacturer Name)~^~Y~^~Refuse~^0^~Cheese (Scientific Name)~^6.38^4.27^8.79^3.87";
+
         FoodDescription foodDescription = new FoodDescription(data);
+
         assertEquals("01169", foodDescription.getFoodId());
         assertEquals("0100", foodDescription.getFoodGroupId());
         assertEquals("Cheese, low-sodium, cheddar or colby", foodDescription.getLongDescription());
@@ -25,8 +27,10 @@ public class DataEntityTest extends TestCase {
 
     public void testMakeNutrientDataFromAsciiString() {
         String data = "~21395~^~672~^0.005^9^0.000^~1~^~A~^~NDB~^~C~^1^0.005^0.006^2^0.004^0.006^~4~^07/2012^2";
+
         NutrientData nutrientData = new NutrientData(data);
-        assertEquals("21395", nutrientData.getDatabankId());
+
+        assertEquals("21395", nutrientData.getFoodId());
         assertEquals("672", nutrientData.getNutrientId());
         assertEquals(0.005, nutrientData.getAmountIn100g());
         assertEquals(9, nutrientData.getNumberOfAnalyses());
@@ -45,6 +49,19 @@ public class DataEntityTest extends TestCase {
         assertEquals(7, nutrientData.getLastModifiedDate().getMonthOfYear());
         assertEquals(2012, nutrientData.getLastModifiedDate().getYear());
         assertEquals(2, nutrientData.getConfidenceCode());
+    }
+
+    public void testMakeNutrientDefinitionFromAsciiString() {
+        String data = "~203~^~g~^~PROCNT~^~Protein~^~2~^~600~";
+
+        NutrientDefinition nutrientDefinition = new NutrientDefinition(data);
+
+        assertEquals("203", nutrientDefinition.getNutrientId());
+        assertEquals("g", nutrientDefinition.getUnits());
+        assertEquals("PROCNT", nutrientDefinition.getAbbreviation());
+        assertEquals("Protein", nutrientDefinition.getNutrientName());
+        assertEquals("2", nutrientDefinition.getDecimalPlaces());
+        assertEquals("600", nutrientDefinition.getSortOrder());
     }
 
 }

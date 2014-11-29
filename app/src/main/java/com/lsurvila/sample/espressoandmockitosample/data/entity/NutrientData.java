@@ -1,15 +1,13 @@
 package com.lsurvila.sample.espressoandmockitosample.data.entity;
 
-import com.lsurvila.sample.espressoandmockitosample.data.AsciiLineParser;
-
 import org.joda.time.LocalDate;
 
 /**
  *  Contains the nutrient values and information about the values, including expanded statistical information.
  */
-public class NutrientData {
+public class NutrientData extends Entity {
 
-    private String databankId;
+    private String foodId;
     private String nutrientId;
     private double amountIn100g;
     private int numberOfAnalyses;
@@ -29,30 +27,29 @@ public class NutrientData {
     private int confidenceCode;
 
     public NutrientData(String data) {
-        AsciiLineParser parser = new AsciiLineParser();
-        parser.parse(data);
-        databankId = parser.getString(0);
-        nutrientId = parser.getString(1);
-        amountIn100g = parser.getDouble(2);
-        numberOfAnalyses = parser.getInt(3);
-        errorOfMean = parser.getDouble(4);
-        dataTypeCode = parser.getString(5);
-        dataDerivationCode = parser.getString(6);
-        ndbNumber = parser.getString(7);
-        enrichedVitaminOrMineral = parser.getString(8);
-        numberOfStudies = parser.getInt(9);
-        minValue = parser.getDouble(10);
-        maxValue = parser.getDouble(11);
-        degreesOfFreedom = parser.getInt(12);
-        lowerErrorBound = parser.getDouble(13);
-        upperErrorBound = parser.getDouble(14);
-        statisticalComments = parser.getString(15);
-        lastModifiedDate = parser.getDate(16);
-        confidenceCode = parser.getInt(17);
+        super(data);
+        foodId = getString(0);
+        nutrientId = getString(1);
+        amountIn100g = getDouble(2);
+        numberOfAnalyses = getInteger(3);
+        errorOfMean = getDouble(4);
+        dataTypeCode = getString(5);
+        dataDerivationCode = getString(6);
+        ndbNumber = getString(7);
+        enrichedVitaminOrMineral = getString(8);
+        numberOfStudies = getInteger(9);
+        minValue = getDouble(10);
+        maxValue = getDouble(11);
+        degreesOfFreedom = getInteger(12);
+        lowerErrorBound = getDouble(13);
+        upperErrorBound = getDouble(14);
+        statisticalComments = getString(15);
+        lastModifiedDate = getDate(16);
+        confidenceCode = getInteger(17);
     }
 
-    public String getDatabankId() {
-        return databankId;
+    public String getFoodId() {
+        return foodId;
     }
 
     public String getNutrientId() {

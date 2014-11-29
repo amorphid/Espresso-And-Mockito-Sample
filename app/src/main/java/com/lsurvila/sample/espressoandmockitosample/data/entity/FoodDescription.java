@@ -8,7 +8,7 @@ import com.lsurvila.sample.espressoandmockitosample.data.AsciiLineParser;
  * factors used for calculating protein and kilocalories, if applicable. Shows if items used in the
  * FNDDS studies.
  */
-public class FoodDescription {
+public class FoodDescription extends Entity {
 
     private String foodId;
     private String foodGroupId;
@@ -26,22 +26,21 @@ public class FoodDescription {
     private double carbohydrateFactor;
 
     public FoodDescription(String data) {
-        AsciiLineParser parser = new AsciiLineParser();
-        parser.parse(data);
-        foodId = parser.getString(0);
-        foodGroupId = parser.getString(1);
-        longDescription = parser.getString(2);
-        shortDescription = parser.getString(3);
-        commonName = parser.getString(4);
-        manufacturerName = parser.getString(5);
-        isUsdaStudied = parser.getBoolean(6);
-        refuseDescription = parser.getString(7);
-        refusePercentage = parser.getInt(8);
-        scientificName = parser.getString(9);
-        nitrogenFactor = parser.getDouble(10);
-        proteinFactor = parser.getDouble(11);
-        fatFactor = parser.getDouble(12);
-        carbohydrateFactor = parser.getDouble(13);
+        super(data);
+        foodId = getString(0);
+        foodGroupId = getString(1);
+        longDescription = getString(2);
+        shortDescription = getString(3);
+        commonName = getString(4);
+        manufacturerName = getString(5);
+        isUsdaStudied = getBoolean(6);
+        refuseDescription = getString(7);
+        refusePercentage = getInteger(8);
+        scientificName = getString(9);
+        nitrogenFactor = getDouble(10);
+        proteinFactor = getDouble(11);
+        fatFactor = getDouble(12);
+        carbohydrateFactor = getDouble(13);
     }
 
     public String getFoodId() {

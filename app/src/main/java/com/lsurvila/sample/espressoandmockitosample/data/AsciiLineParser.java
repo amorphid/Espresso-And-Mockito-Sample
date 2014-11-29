@@ -18,9 +18,6 @@ public class AsciiLineParser {
     private static final String VALUE_BOOLEAN_TRUE = "Y";
     private static final String VALUE_BOOLEAN_FALSE = "N";
 
-    private static final int EMPTY_INTEGER = -1;
-    private static final double EMPTY_DOUBLE = -1.0;
-
     private String[] values;
 
     public void parse(String data) {
@@ -31,18 +28,18 @@ public class AsciiLineParser {
         return values.length;
     }
 
-    public int getInt(int position) {
+    public Integer getInt(int position) {
         if (!isEmpty(position)) {
             return Integer.valueOf(values[position]);
         }
-        return EMPTY_INTEGER;
+        return null;
     }
 
-    public double getDouble(int position) {
+    public Double getDouble(int position) {
         if (!isEmpty(position)) {
             return Double.valueOf(values[position]);
         }
-        return EMPTY_DOUBLE;
+        return null;
     }
 
     public String getString(int position) {
@@ -52,7 +49,7 @@ public class AsciiLineParser {
         return null;
     }
 
-    public boolean getBoolean(int position) {
+    public Boolean getBoolean(int position) {
         String string = getString(position);
         if (string != null) {
             if (string.equals(VALUE_BOOLEAN_TRUE)) {
@@ -61,7 +58,7 @@ public class AsciiLineParser {
                 return false;
             }
         }
-        throw new NumberFormatException("Value is not a valid boolean");
+        return null;
     }
 
     public LocalDate getDate(int position) {
